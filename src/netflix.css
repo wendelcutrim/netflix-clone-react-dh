@@ -100,35 +100,8 @@ section#banner div input {
 }
 
 
-section.motivos {
-  background: #000;
-  color: #fff;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 60px;
-}
 
-section.motivos div {
-}
 
-section.motivos div h1 {
-  font-size: 60px;
-}
 
-section.motivos div p {
-  font-size: 30px;
-}
 
-section.motivos div img {
-}
 
-hr.divisor {
-  height: 8px;
-  background-color: #222;
-  border: none;
-}
-
-.alterna {
-  flex-direction: row-reverse;
-}

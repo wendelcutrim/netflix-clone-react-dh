@@ -19,3 +19,14 @@
 .alterna {
   flex-direction: row-reverse;
 }
+
+/* img:hover {
+  transform: scale(1.5);
+  transition: 1s all;
+  cursor: pointer;
+}
+
+img:not(:hover){
+  transform: scale(1);
+  transition: 1s all;
+} */

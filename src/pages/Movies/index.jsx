@@ -4,69 +4,38 @@ import Movie from "../../components/Movie";
 import { useState } from "react";
 
 export default function Movies() {
-    const [movies, setMovies] = useState([
-        {
-            poster: "https://br.web.img3.acsta.net/pictures/17/05/29/23/31/530814.jpg",
-            title: "Teste",
-            date: "2021",
-            votes: "8.5",
-        },
+    const [movies, setMovies] = useState([]);
 
-        {
-            poster: "https://br.web.img3.acsta.net/pictures/17/05/29/23/31/530814.jpg",
-            title: "Teste",
-            date: "2021",
-            votes: "8.5",
-        },
-
-        {
-            poster: "https://br.web.img3.acsta.net/pictures/17/05/29/23/31/530814.jpg",
-            title: "Teste",
-            date: "2021",
-            votes: "8.5",
-        },
-    ]);
-
-    function addMovie(){
-        const newMovie = {
-            poster: "https://media.fstatic.com/2JWKqhEL-9h1JlW47iYyCfygw2M=/290x478/smart/media/movies/covers/2020/08/the-boys-22.jpg",
-            title: "Teste State",
-            date: "2020",
-            votes: "9.5",
+    const BASE_URL = "https://api.themoviedb.org/3"
+    const API_KEY = ""
+    const settings = {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${API_KEY}`
         }
-
-        setMovies([newMovie, ...movies])
     }
 
-    /* let [count, setCount] = useState(0)
-    function addCart(){
-        setCount(count += 1);
-    }
+    async function addMovie(){
+        const response = await fetch(`${BASE_URL}/movie/popular`, settings);
+        const data = await response.json();
 
-    function removeCart(){
-        if(count > 0){
-            setCount(count -= 1);
-        }else{
-            setCount(count = 0)
-        }
-    } */
+        // console.log(data);
+        setMovies([...data.results, ...movies]);
+    }
 
 return (
     <div>
         <Header />
         <main id="movies">
             <div className="movies-list">
-                {/* <p>Qtd de itens no carrinho: {count}</p>
-                <button onClick={addCart}>Adicionar ao carrinho</button>
-                <button onClick={removeCart}>Remover do carrinho</button> */}
                 <button onClick={addMovie}>Adicionar filme</button>
                     {movies.map((movie) => {
                         return (
                             <Movie 
                                 title={movie.title}
-                                poster={movie.poster}
-                                date={movie.date}
-                                votes={movie.votes}
+                                poster={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                                date={movie.release_date}
+                                votes={movie.vote_average}
                             />
                         );
                     })}

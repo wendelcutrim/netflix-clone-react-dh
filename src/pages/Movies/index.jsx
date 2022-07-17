@@ -6,14 +6,14 @@ import { useState } from "react";
 export default function Movies() {
     const [movies, setMovies] = useState([]);
 
-    const BASE_URL = "https://api.themoviedb.org/3"
-    const API_KEY = ""
+    const BASE_URL = process.env.REACT_APP_API_TMDB_EDNPOINT;
+    const API_KEY = process.env.REACT_APP_API_TMDB_KEY;
     const settings = {
         method: "GET",
         headers: {
             Authorization: `Bearer ${API_KEY}`
         }
-    }
+    };
 
     async function addMovie(){
         const response = await fetch(`${BASE_URL}/movie/popular`, settings);
@@ -28,12 +28,13 @@ return (
         <Header />
         <main id="movies">
             <div className="movies-list">
-                <button onClick={addMovie}>Adicionar filme</button>
+                <button onClick={addMovie}>Listar filmes Populares</button>
                     {movies.map((movie) => {
                         return (
-                            <Movie 
+                            <Movie
+                                key={movie.id}
                                 title={movie.title}
-                                poster={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                                poster={`${process.env.REACT_APP_API_TMDB_IMG_ENDPOINT}${movie.poster_path}`}
                                 date={movie.release_date}
                                 votes={movie.vote_average}
                             />

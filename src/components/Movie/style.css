@@ -1,0 +1,12 @@
+.movie {
+    max-width: 120px;
+}
+
+.movie img {
+    width: 100%;
+}
+
+.movie .specs {
+    display: flex;
+    justify-content: space-between;
+}

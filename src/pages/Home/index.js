@@ -1,5 +1,4 @@
 import "./netflix.css";
-import Logo from "../../assets/images/logo.png";
 import Motivo1 from "../../assets/images/motivo-1.png";
 import Motivo2 from "../../assets/images/motivo-2.png";
 import Button from "../../components/Button";
@@ -7,6 +6,7 @@ import Divisor from "../../components/Divisor";
 import SectionMotivo from "../../components/SectionMotivo";
 import MOTIVOS from "../../constants/motivos";
 import Card from "../../components/Card";
+import Header from "../../components/Header"
 
 /* function App(){
   const nome = "Wendel";
@@ -31,20 +31,7 @@ function Home() {
   const idioma = "EN";
   return (
    <div>
-      <header>
-        <div>
-          <img src={Logo} alt="Logo" />
-        </div>
-        <div id="login">
-          <select id="idioma">
-            <option value="PT">Português</option>
-            <option value="ING">Ingles</option>
-          </select>
-          <Button variante="alert" text="Login" />
-          {/* <button>Entrar</button> */}
-        </div>
-      </header>
-
+      <Header />
       <section id="banner">
         <h1>
           Filmes, séries e muito <br />

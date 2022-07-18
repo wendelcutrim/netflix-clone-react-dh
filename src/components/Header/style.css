@@ -1,0 +1,35 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    /*! background: black; */
+    height: 80px;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+  }
+  
+  header div img {
+    width: 170px;
+  }
+  
+  header #login {
+    width: 15%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  header #login select {
+    background: none;
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+  
+  header #login select option {
+    background: rgb(176, 176, 176);
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 20px;
+  }

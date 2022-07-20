@@ -4,57 +4,52 @@ import "./style.css";
 import { useState } from "react";
 
 export default function Movies() {
-    const [movies, setMovies] = useState([
-        {
-            poster: "https://br.web.img3.acsta.net/pictures/17/05/29/23/31/530814.jpg",
-            title: "Teste",
-            date: "2021",
-            votes: "8.5",
-        },
-        {
-            poster: "https://br.web.img3.acsta.net/pictures/17/05/29/23/31/530814.jpg",
-            title: "Teste",
-            date: "2021",
-            votes: "8.5",
-        },
-        {
-            poster: "https://br.web.img3.acsta.net/pictures/17/05/29/23/31/530814.jpg",
-            title: "Teste",
-            date: "2021",
-            votes: "8.5",
-        },
-        {
-            poster: "https://br.web.img3.acsta.net/pictures/17/05/29/23/31/530814.jpg",
-            title: "Teste",
-            date: "2021",
-            votes: "8.5",
-        },
-    ]);
+    const [movies, setMovies] = useState([]);
 
-    function addMovie(){
-        const newMovie = {
-            poster: "https://br.web.img3.acsta.net/pictures/17/05/29/23/31/530814.jpg",
-            title: "Add com a função",
-            date: "200",
-            votes: "10",
+    const BASE_URL = process.env.REACT_APP_API_TMDB_BASE_URL;
+    const API_KEY = process.env.REACT_APP_API_TMDB_KEY;
+    const settings = {
+        headers: {
+            Authorization: `Bearer ${API_KEY}`
         }
+    };
 
-        setMovies([newMovie, ...movies])
+    async function addMovie(){
+        const response = await fetch(`${BASE_URL}/movie/popular`, settings);
+
+        const data = await response.json();
+        
+        //Inserindo o retorno da resposta da API no state movies.
+        setMovies([...data.results, ...movies]);
     }
 
+ /*    let [cart, setCart] = useState(0)
+
+    function addCart(){
+        setCart(cart += 1)
+    }
+
+    function removeCart(){
+        setCart(cart -= 1)
+    }
+ */
     return (
         <div>
             <Header />
             <main className="movies">
+                {/* <p>Qtd de itens no carrinho: {cart}</p>
+                <button onClick={addCart}>Adicionar itens</button>
+                <button onClick={removeCart}>Remover itens</button> */}
                 <div className="movies-list">
                     <button onClick={addMovie}>Add Filme</button>
                     {movies.map((movie) => {
                         return(
-                            <Movie 
+                            <Movie
+                                key={movie.id}
                                 title={movie.title}
-                                poster={movie.poster}
-                                date={movie.date}
-                                votes={movie.votes}
+                                poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                date={movie.release_date}
+                                votes={movie.vote_average}
                             />
                         );
                     })}

@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function Movies() {
     const [movies, setMovies] = useState([]);
 
-    const BASE_URL = process.env.REACT_APP_API_TMDB_EDNPOINT;
+    const BASE_URL = process.env.REACT_APP_API_TMDB_BASE_URL;
     const API_KEY = process.env.REACT_APP_API_TMDB_KEY;
     const settings = {
         method: "GET",
